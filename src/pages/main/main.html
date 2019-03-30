@@ -1,0 +1,71 @@
+<!--
+  Generated template for the MainPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+--><ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Home</ion-title>
+      </ion-navbar>
+    </ion-header>
+    <ion-content class="card-background-page">
+      <ion-grid>
+        <ion-row>
+      <!--     <ion-col ><img src="../../assets/imgs/icon_money.png"/></ion-col> --> 
+          <ion-col >
+              <ion-card (click)="category()">
+                  <img style="height: auto; width: auto;" src="../../assets/imgs/icon_money.png" >               
+                  <div class="card-title">Add and List Categories</div>
+                <!--  <div class="card-subtitle">List of Categories</div>-->
+                </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            
+          <ion-col aria-setsize="2">
+              <ion-card (click)="items()">
+                  <ion-col ><img  style="height: auto; width: auto;" src="../../assets/imgs/icon_user.png"/></ion-col>
+                  <div class="card-title">Add and List Items</div>
+             <!--     <div class="card-subtitle">List of Items</div> -->
+                </ion-card>
+          </ion-col>
+        </ion-row>
+     
+            <ion-row>
+            <ion-col>
+                <ion-card (click)="reportGraph()">
+                    <ion-col><img style="height: auto; width: auto;" src="../../assets/imgs/icon_report.png"/></ion-col>
+                    <div class="card-title">View Reports and Analysis</div>
+                <!--    <div class="card-subtitle">List Reports</div> -->
+                  </ion-card>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+              
+          <ion-col>
+              <ion-card (click)="search()">
+                  <ion-col><img style="height: auto; width: auto;" src="../../assets/imgs/icon_setting.png"/></ion-col>
+                  <div class="card-title">Search Categories and Items</div>
+              <!--    <div class="card-subtitle">Search Items</div> -->
+              </ion-card>
+          </ion-col>
+        </ion-row>
+
+          <ion-row>
+              
+            <ion-col>
+                <ion-card (click)="transcations()">
+                    <ion-col><img style="height: auto; width: auto;" src="../../assets/imgs/icon_report.png"/></ion-col>
+                    <div class="card-title">Manage Expense Transaction</div>
+                <!--    <div class="card-subtitle">Transcations Details</div> -->
+                  </ion-card>
+            </ion-col>
+           
+          </ion-row>
+      </ion-grid>
+        
+      
+    </ion-content>
