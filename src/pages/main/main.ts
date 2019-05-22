@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home/home';
-import { ListPage } from '../list/list';
 import { ReportPage } from '../report/report';
 import { SearchPage } from '../search/search';
 import { AddCategoryPage } from '../add-category/add-category';
 import { AdditemsPage } from '../additems/additems';
 import { TransactionPage } from '../transaction/transaction';
 import { ReportGraphPage } from '../report-graph/report-graph';
+import { DummydataPage } from '../dummydata/dummydata';
+
 
 /**
  * Generated class for the MainPage page.
@@ -47,6 +47,9 @@ transcations(){
 
 reportGraph(){
   this.navCtrl.push(ReportGraphPage)
+}
+dummydata(){
+  this.navCtrl.push(DummydataPage)
 }
 
 }

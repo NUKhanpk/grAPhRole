@@ -15,9 +15,9 @@
               <ion-col col-12>
                   <ion-item>
                       <ion-label>Date</ion-label>
-                      <ion-datetime displayFormat="YYYY/MM/DD"  required=""></ion-datetime>
+                      <ion-datetime displayFormat="YYYY/MM/DD" formControlName="Date"  required=""></ion-datetime>
                     </ion-item>
-              <ion-item> 
+              <ion-item>
                   <ion-label>Caterogy Type</ion-label>
                   <ion-select (ionChange)="onChange($event)" multiple="false" formControlName="Category">
                     <ion-option *ngFor="let expense of expenses; let i=index" value="{{expense.name}}">
@@ -25,7 +25,7 @@
                     </ion-option>
                   </ion-select>
                 </ion-item>
-                <ion-item> 
+                <ion-item>
                   <ion-label>Item Type</ion-label>
                   <ion-select multiple="false" formControlName="Items">
                     <ion-option *ngFor="let item of subItems; let i=index" value="{{item.description}}">
@@ -45,17 +45,26 @@
               </ion-row>
   </form>
   <button ion-button block (click)="saveData()">Add Transactions</button>
+  <ion-card color="secondary">
+      <ion-grid>
+        <ion-row>
+          <ion-col size-med="10">Category</ion-col>
+          <ion-col size-med="1">Sub Category</ion-col>
+          <ion-col size-med="1">Amount</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
   <ion-list>
     <ion-item-sliding *ngFor="let item of items; let i=index">
-      <ion-item padding>
-        <h2 item-start>
-          <span>{{item.date}}</span><br>
-          Category: {{item.type}}<br>
-        
-        </h2>
-        <h2 item-end>
-            Amount: Rs {{item.Amount}}
-          </h2>
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+              <ion-col size-small="4">{{item.type}}</ion-col >
+            <ion-col size-small="4">{{item.Date}}</ion-col >
+            <ion-col size-small="5">{{item.ItemType}}</ion-col>
+            <ion-col size-small="1">{{item.Amount}}</ion-col>
+          </ion-row>
+          </ion-grid>
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="primary" (click)="editData(item.rowid)">

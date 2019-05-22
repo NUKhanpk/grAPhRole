@@ -65,5 +65,14 @@
       "browser",
       "ios"
     ]
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NUKhanpk/grAPhRole.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NUKhanpk/grAPhRole/issues"
   }
 }

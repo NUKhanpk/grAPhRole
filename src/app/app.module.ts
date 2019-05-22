@@ -20,7 +20,8 @@ import { EditcategoryPage } from '../pages/editcategory/editcategory';
 import { EdititemsPage } from '../pages/edititems/edititems';
 import { SearchPage } from '../pages/search/search';
 import { SearchresultPage } from '../pages/searchresult/searchresult';
-import { ReportGraphPage } from '../pages/report-graph/report-graph'
+import {ReportGraphPage} from '../pages/report-graph/report-graph';
+import {DummydataPage} from '../pages/dummydata/dummydata';
 @NgModule({
   declarations: [
     MyApp,
@@ -38,7 +39,9 @@ import { ReportGraphPage } from '../pages/report-graph/report-graph'
     EdititemsPage,
     SearchPage,
     SearchresultPage,
-    ReportGraphPage
+    ReportGraphPage,
+    DummydataPage,
+
 
   ],
   imports: [
@@ -62,7 +65,9 @@ import { ReportGraphPage } from '../pages/report-graph/report-graph'
     EdititemsPage,
     SearchPage,
     SearchresultPage,
-    ReportGraphPage
+    ReportGraphPage,
+    DummydataPage
+
 
 
   ],
@@ -72,7 +77,7 @@ import { ReportGraphPage } from '../pages/report-graph/report-graph'
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Toast,
     SQLite,
-    CategoryProvider 
+    CategoryProvider
   ]
 })
 export class AppModule {}

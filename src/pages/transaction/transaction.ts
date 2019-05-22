@@ -27,13 +27,14 @@ export class TransactionPage {
   balance = 0;
   cat:any = [];
   value:any
-  constructor(public navCtrl: NavController,private sqlite: SQLite,private fb:FormBuilder, 
+  constructor(public navCtrl: NavController,private sqlite: SQLite,private fb:FormBuilder,
     private toast:Toast,private alertCtrl: AlertController) {
     this.AddItemForm=this.fb.group({
       Category:['',Validators.required],
       Amount:['',Validators.required],
       Items:['',Validators.required],
-      
+      Date:['',Validators.required]
+
      });
     // If we navigated to this page, we will have an item available as a nav param
   }
@@ -70,7 +71,7 @@ onamountChange($event){
     .then(res => {
       this.cat = [];
       for(var i=0; i<res.rows.length; i++) {
-        this.cat.push({ rowid:res.rows.item(i).rowid,name:res.rows.item(i).name,CategoryMin:res.rows.item(i).CategoryMin,CategoryMax:res.rows.item(i).CategoryMax})      
+        this.cat.push({ rowid:res.rows.item(i).rowid,name:res.rows.item(i).name,CategoryMin:res.rows.item(i).CategoryMin,CategoryMax:res.rows.item(i).CategoryMax})
        }
     }).then(()=>{
       let data = this.cat[0]
@@ -83,7 +84,7 @@ onamountChange($event){
       if(this.value > parseInt(data.CategoryMax)){
         alert.present();
       }
-    
+
      else{
        console.log('')
      }
@@ -91,7 +92,7 @@ onamountChange($event){
 })
 
 }
-onChange($event){  
+onChange($event){
   this.getsubItems($event)
   }
 getsubItems($event) {
@@ -99,7 +100,7 @@ getsubItems($event) {
     name: 'ionicdb.db',
     location: 'default'
   }).then((db: SQLiteObject) => {
-    db.executeSql('SELECT * FROM items WHERE type=?',[$event])
+    db.executeSql('SELECT * FROM items WHERE type=?',[this.AddItemForm.value.Category])
     .then(res => {
       this.subItems = [];
       for(var i=0; i<res.rows.length; i++) {
@@ -114,7 +115,7 @@ getitems() {
     name: 'ionicdb.db',
     location: 'default'
   }).then((db: SQLiteObject) => {
-    db.executeSql('CREATE TABLE IF NOT EXISTS tanscations(rowid INTEGER PRIMARY KEY, type TEXT, Amount TEXT,ItemType TEXT)',[])
+    db.executeSql('CREATE TABLE IF NOT EXISTS tanscations(rowid INTEGER PRIMARY KEY, type TEXT, Amount TEXT,ItemType TEXT, Date TEXT)',[])
     .then(res => console.log('Executed SQL'))
     .catch(e => console.log(e));
     db.executeSql('SELECT * FROM tanscations ORDER BY rowid DESC', [])
@@ -122,7 +123,7 @@ getitems() {
       this.items = [];
       for(var i=0; i<res.rows.length; i++) {
         this.items.push({rowid:res.rows.item(i).rowid,type:res.rows.item(i).type,Amount:res.rows.item(i).Amount,
-          ItemType:res.rows.item(i).ItemType})
+          ItemType:res.rows.item(i).ItemType,Date:res.rows.item(i).Date})
       }
     }).catch(e => console.log(e));
     db.executeSql('SELECT SUM(amount) AS totalExpense FROM tanscations WHERE amount', [])
@@ -161,13 +162,12 @@ saveData() {
     let data={
       type:type.Category,
       Amount:type.Amount,
-      ItemType:type.ItemType
+      ItemType:type.Items,
+      Date:type.Date
     }
-    console.log(data.type)
-    console.log(data.Amount)
-    console.log(data.ItemType)
-    db.executeSql('INSERT INTO tanscations VALUES(NULL,?,?,?)',[data.type,data.Amount,data.ItemType])
-    
+
+    db.executeSql('INSERT INTO tanscations VALUES(NULL,?,?,?,?)',[data.type,data.Amount,data.ItemType,data.Date])
+
       .then(res => {
         this.toast.show('Data saved', '5000', 'center').subscribe(
           toast => {
@@ -177,7 +177,7 @@ saveData() {
       })
       .catch(e => {
         console.log(e);
-        this.toast.show(e, '5000', 'center').subscribe(
+        this.toast.show(JSON.stringify(e), '5000', 'center').subscribe(
           toast => {
             console.log(toast);
           }

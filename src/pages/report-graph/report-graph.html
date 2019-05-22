@@ -5,10 +5,10 @@
       </ion-title>
     </ion-navbar>
   </ion-header>
-  
+
   <ion-content>
     <form  [formGroup]="AddItemForm" >
-        <ion-item> 
+        <ion-item>
             <ion-label>Caterogy Type</ion-label>
             <ion-select (ionChange)="onChange($event)" multiple="false" formControlName="Category">
               <ion-option *ngFor="let expense of expenses; let i=index" value="{{expense.name}}">
@@ -17,7 +17,7 @@
             </ion-select>
           </ion-item>
     </form>
-      
+
       <ion-card>
         <ion-card-header>
           Analysis Chart
@@ -26,23 +26,23 @@
           <canvas #barCanvas></canvas>
         </ion-card-content>
       </ion-card>
-  
+
       <ion-card>
         <ion-card-header>
-          Doughnut Chart
+          Contribution Chart
         </ion-card-header>
         <ion-card-content>
           <canvas #doughnutCanvas></canvas>
         </ion-card-content>
       </ion-card>
-  
+
       <ion-card>
         <ion-card-header>
-          Line Chart
+          Trending Chart
         </ion-card-header>
         <ion-card-content>
           <canvas #lineCanvas></canvas>
         </ion-card-content>
       </ion-card>
-  
+
   </ion-content>
